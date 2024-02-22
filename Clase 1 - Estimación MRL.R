@@ -158,6 +158,9 @@ shapiro.test(residuos)
 library(car)
 leveneTest(residuos, production$RunTime) 
 ## el test de levene mide la homogeneidad de varianzas de una serie de observaciones a lo largo de un factor (que agrupa)
- 
+ # la prueba de Levene se utiliza para comprobar la hipótesis nula de que las muestras que se van a comparar proceden de una población con la misma varianza
+ # H0: Los grupos tienen varianzas iguales
+ # H1: Los grupos tienen varianzas diferentes
+
 # No se tiene homocedasticidad en los residuos
 
