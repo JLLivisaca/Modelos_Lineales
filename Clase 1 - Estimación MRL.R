@@ -95,7 +95,7 @@ attach(production)
 
 #Figura del diagrama de dispersión, importante para saber si hay una relación lineal
 plot(RunTime~RunSize,xlab="Run Size", ylab="Run Time",
-     pch=16,main="Diagrama de dispersion", col="blue",)
+     pch=16,main="Diagrama de dispersión, correlación = 0.8545", col="blue",)
 abline(lsfit(production$RunSize,production$RunTime), col="red")
 cor(RunTime,RunSize)
 # Modelo lineal
@@ -156,7 +156,8 @@ shapiro.test(residuos)
 
 # homocedasticidad
 library(car)
-leveneTest(residuos, production$RunTime)
+leveneTest(residuos, production$RunTime) 
+## el test de levene mide la homogeneidad de varianzas de una serie de observaciones a lo largo de un factor (que agrupa)
  
 # No se tiene homocedasticidad en los residuos
 
