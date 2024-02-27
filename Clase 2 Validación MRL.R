@@ -1,4 +1,4 @@
-#### Validación de un modelo de regresión lineal
+#### Validación de un modelo de regresión lineal ####
 # Juan Llivisaca - Febrero 2024
 #### Iniciamos ####
 data(anscombe) # Datos de U. S. State Public-School Expenditures, librería (datasets)
