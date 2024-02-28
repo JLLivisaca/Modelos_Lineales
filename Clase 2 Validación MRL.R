@@ -80,7 +80,7 @@ residuos<- m1$residuals
 
 #### CONTRASTAR LINEALIDAD ####
 res<-m1$residuals #guardamos los residuos
-plot(res~RunSize);abline(h=0)
+plot(res~Run);abline(h=0)
 #según la grafica no hay patrones, o se puede suponer eso (ruido blanco)
 #para hacer test de linealidad se requiere instalar el paquete lmtest
 library(lmtest) # Si no tiene la librería, se debe instalar.
