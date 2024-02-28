@@ -116,7 +116,7 @@ predict(m1,newdata=data.frame(RunSize=c(50,100,150,200,250,300,350)),interval="c
 predict(m1,newdata=data.frame(RunSize=c(50,100,150,200,250,300,350)),interval="prediction",level=0.95)
 
 # ¿Cómo está la variabilidad?
-media_y <- mean(RunTime) # VEctor de medias
+media_y <- mean(RunTime) # Vector de medias
 proy_y <- m1$fitted.values
 resid <- m1$residuals
 n <- length(RunTime)
