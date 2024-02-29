@@ -130,7 +130,7 @@ lambda_optimo <- transformacion_boxcox$x[which.max(transformacion_boxcox$y)]
 print(lambda_optimo)
 # lambda óptimo = 0.6666667
 # Aplica la transformación Box-Cox con el lambda óptimo
-datos_transformados <- predict(transformacion_boxcox, lambda = lambda_optimo)
+#datos_transformados <- predict(transformacion_boxcox, lambda = lambda_optimo)
 datos_transformados <- (datos$Rooms^lambda_optimo - 1) / lambda_optimo
 yt<-datos_transformados
 xt<-datos$Crews
