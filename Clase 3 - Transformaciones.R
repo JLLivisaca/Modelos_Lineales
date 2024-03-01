@@ -15,7 +15,7 @@ attach(madera)
 modelo<-lm(produccion~altitud) # Y = Producción, X=Altitud
 summary(modelo)
 # Gráfica de dispersión
-plot(produccion,altitud,pch=16,
+plot(altitud,produccion, pch=16,
      main="Diagrama de dispersión, Altitud vs Producción", col="blue" )
 abline(modelo, col="red")
 # se observa que la tendencia es no lineal y que 
