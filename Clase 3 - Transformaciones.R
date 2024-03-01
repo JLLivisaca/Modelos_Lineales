@@ -54,7 +54,7 @@ rest<-modelot$residuals
 plot(rest~x, main="Variable transformada");abline(h=0) #vemos que ahora ya no hay tendencia en los residuos
 plot(res~x, main="Variable sin transformar");abline(h=0)
 #### DATOS TRANSFORMADOS DEL MODELO: Transformacion Raíz ####
-#Ejemplo: e está analizando la contratación de un servicio de limpieza para ciertas oﬁcinas. 
+#Ejemplo: Se está analizando la contratación de un servicio de limpieza para ciertas oﬁcinas. 
 # El coste del servicio de limpieza depende del número de personas que se contraten. Para poder valo-
 # rar el número de personas, se han tomado unos datos sobre servicios realizados en el pasado, en
 # los cuales consta el número de habitaciones que se han podido limpiar junto al número de personas
@@ -71,7 +71,7 @@ modelo<-lm(y~x)
 summary(modelo)
 #Grafica modelo
 library(ggplot2)
-library(gridExtra)
+library(gridExtra) # si no tiene la librería, por favor instalarla.
 ggplot(datos, aes(x = x, y = y)) +
   geom_point() +  # Puntos de datos
   geom_smooth(method = "lm", se = FALSE) +  # Línea de regresión
