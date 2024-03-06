@@ -43,6 +43,7 @@ influenceIndexPlot(mfull, vars="Bonf", las=1) # Grafica el pvalor de los puntos 
 #  y por lo tanto hay evidencias para considerar esa observación como un posible outlier
 
 # Modelo con interacción
+
 # Prueba de bonferroni
 outlierTest(mfull.interaccion, cutoff=Inf, n.max=4)
 influenceIndexPlot(mfull.interaccion, vars="Bonf", las=1)
@@ -51,12 +52,14 @@ influenceIndexPlot(mfull.interaccion, vars="Bonf", las=1)
 # Considerar el valor 17 como dato inicial para cambiar.
 
 # Distancias de cook 
+
 # Son puntos influyentes las observaciones que presenten Di=4/ n−p−2. 
 # n = total de datos, p = variables
 # Si una distancia de Cook es mucho mayor que 1, se considera que 
 # la observación correspondiente tiene una influencia sustancial en el modelo
 cooks.distance(mfull)
 cooks.distance(mfull.interaccion)
+
 #Forma grafica
 cutoff <- 4/(44-3-2)  # Cota
 plot(mfull, which=4, cook.levels=cutoff, las=1)
@@ -66,6 +69,22 @@ abline(h=cutoff, lty="dashed", col="blue")
 cutoff <- 4/(44-4-2)  # Cota
 plot(mfull.interaccion, which=4, cook.levels=cutoff, las=1)
 abline(h=cutoff, lty="dashed", col="blue")
+
+#### Elección de variables ####
+library(MPV) # Aqui estan los datos, contiene 30 observaciones de diferentes automóviles en cuanto al rendimiento 
+datos <- table.b3[-c(23, 25), ] # Eliminando 2 observaciones con NA
+modelo <- lm(y ~ x1 + x2 + x3 + x4 + x5 + x6 + x7 + x8 + x9 + x10 + x11,
+             data=datos)
+library(mixlm)
+backward(modelo, alpha=0.05) # se puede usar: backward, forward,stepWise, wideForward 
+# El modelo final es 
+# y ~ x8 + x10
+# por que esye es es el que permitió tener el menor AIC y RSS
+stepWiseBack(modelo, alpha.remove = 0.15, alpha.enter = 0.15, full = F)
+# El modelo final es 
+# y ~ x5 + x8 + x10
+# por que esye es es el que permitió tener el menor AIC y RSS
+
 
 #### Regresión Polinómica ####
 
@@ -121,5 +140,5 @@ step(mod2)
 
 # Colinealidad en las variables
 library(car)
-vif(mod2)
-vif(mod3)
+vif(mod2) # Considerar este detalle.
+
