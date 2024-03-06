@@ -133,9 +133,6 @@ ggplot(datos, aes(x=Concentración, y=Resistencia)) +
   geom_smooth(method='lm', formula=y~x+I(x^2)+I(x^4)+I(x^5), se=FALSE, col='purple')+
   theme_light()
 
-# Seleccionar variables 
-step(mod2)
-
 # Cuidado con el ajuste del modelo. 
 
 # Colinealidad en las variables
