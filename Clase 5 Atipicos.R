@@ -24,10 +24,14 @@ ggplot(Cars93, aes(x=EngineSize, y=Price, color=Type)) +
   geom_point() + theme_light()
 
 # Modelo de regresión lienal múltiple variables cualitativas
+# H0:la variable de la FILA no aporta información para el modelo,
+# HA:la variable de la FILA si aporta información para el modelo
+
 mod <- lm(Price ~ EngineSize + Type, data=Cars93)
 summary(mod)
 anova(mod)
-
+# Se tiene un p-valor de 0.000542, por lo tanto, se concluye que hay evidencias 
+# para rechazar H0, es decir, la variable Tipo(Type) si aporta información al modelo
 
 #DIAGNOSIS DE DATOS ATIPICOS O INFLUYENTES
 set.seed(123456)
