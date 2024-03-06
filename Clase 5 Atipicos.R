@@ -32,6 +32,13 @@ summary(mod)
 anova(mod)
 # Se tiene un p-valor de 0.000542, por lo tanto, se concluye que hay evidencias 
 # para rechazar H0, es decir, la variable Tipo(Type) si aporta información al modelo
+# Muchas veces solo el ver el p-valor con la función summary(), conlleva a que se vean 
+# variables cualitativas que no son significativas. Pero esto no siempre es correcto, para 
+# corrobar esta afirmación, es usual utilizar la función ANOVA, para comprabar si la variable
+# cualitativa tiene o no efecto en el modelo. Las hipótesis planteadas son: 
+# H0:la variable CUALITATIVA no influye en la media de Y(variable dependiente), 
+# HA:la variable CUALITATICA si influye en la media de Y(variable dependiente) 
+
 
 #DIAGNOSIS DE DATOS ATIPICOS O INFLUYENTES
 set.seed(123456)
