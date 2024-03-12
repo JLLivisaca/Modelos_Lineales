@@ -6,7 +6,7 @@
 library(readr)
 library(dplyr)
 library(ggplot2)
-
+library(broom)
 datos <- read_csv("GitHub/estadistica-inferencia/Modelos_Lineales/Modelos_Lineales/meatspec.csv")
 attach(datos)
 # Realizar la partición de los datos
@@ -19,7 +19,7 @@ datos_test  <- datos[-train_index, ]
 # Primer modelo ==============================================================================
 # Crea un objeto de modelo de regresión lineal
 modelo <- lm(fat ~ ., data = datos_train) # El . significa que hará el modelo con todas las variables
-summary(modelo)
+summary(modelo); glance(modelo)
 paste("Número de predictores incluidos en el modelo:", length(modelo$coefficients))
 # "Número de predictores incluidos en el modelo: 102"
 # Este modelo es muy amplio, se ven muchos predictores que no son significativos. Hay que mejorarlo.
@@ -69,7 +69,7 @@ modelo <- step(
   scope     = list(upper = ~., lower = ~1),
   trace     = FALSE
 )
-summary(modelo)
+summary(modelo); glance(modelo)
 
 # Coeficientes del modelo
 # ==============================================================================
@@ -130,7 +130,7 @@ modelo <- glmnet(
   alpha       = 0,
   nlambda     = 100,
   standardize = TRUE
-)
+) 
 # Evolución de los coeficientes en función de lambda
 # ==============================================================================
 regularizacion <- modelo$beta %>% 
@@ -297,7 +297,7 @@ modelo <- glmnet(
   alpha       = 1,
   lambda      = cv_error$lambda.1se,
   standardize = TRUE
-)
+) 
 # Coeficientes del modelo
 # ==============================================================================
 df_coeficientes <- coef(modelo) %>%
@@ -336,3 +336,15 @@ paste("Error (mse) de test:", test_mse_lasso)
 
 # "Error (mse) de entrenamiento: 10.2237"
 # "Error (mse) de test: 10.2861"
+# Predicciones del modelo 
+predicciones <- predict(modelo, newx = x_test, s = cv_error$lambda.1se)
+# Calcular el número de observaciones
+n_obs <- length(y_test)
+# Calcular el log-likelihood, que es la función de máxima verosimilitud
+log_likelihood <- -n_obs/2 * log(sum((y_test - predicciones)^2))
+# Calcular el número de parámetros
+n_parametros <- sum(coef(modelo, s = cv_error$lambda.1se) != 0)
+# Calcular AIC, BIC y AICc
+(AIC <- -2 * log_likelihood + 2 * n_parametros)
+(BIC <- -2 * log_likelihood + log(n_obs) * n_parametros)
+(AICc <- AIC + 2 * n_parametros * (n_parametros + 1) / (n_obs - n_parametros - 1))
