@@ -54,8 +54,8 @@ predicciones_test <- predict(modelo, newdata = datos_test)
 test_mse_ols <- round(mean((predicciones_test - datos_test$fat)^2),4)
 paste("Error (mse) de test:", test_mse_ols)
 # ==============================================================================
- # El modelo tiene un MSE muy bajo (0.3706) cuando predice las mismas observaciones con las que se ha entrenado, 
-#  pero mucho más alto (18.5229) al predecir nuevas observaciones. Esto significa que el modelo no es útil, 
+ # El modelo tiene un MSE muy bajo (0.5007) cuando predice las mismas observaciones con las que se ha entrenado, 
+#  pero mucho más alto (53.6497) al predecir nuevas observaciones. Esto significa que el modelo no es útil, 
 # ya que el objetivo es aplicarlo para predecir el contenido en grasa de futuras muestras de carne. 
 # Esto se conoce como overfitting (sobre ajuste), es decir el modelo se ajusta demasiado
 
@@ -85,7 +85,7 @@ df_coeficientes %>%
   theme(axis.text.x = element_text(size = 6, angle = 45))
 
 paste("Número de predictores incluidos en el modelo:", length(modelo$coefficients))
-# "Número de predictores incluidos en el modelo: 68"
+# "Número de predictores incluidos en el modelo: 64"
 
 # Predicciones de entrenamiento. En este caso se usa el modelo, se carga el dataset train y se evalúa al modelo
 # ==============================================================================
