@@ -7,10 +7,8 @@ attach(Datos)
 library(corrplot)
 library(dplyr)
 Datos1 <-  Datos[,c(5,7)]
-M= cor(Datos1)
-corrplot(M,method= "number",
-         main="Gráfico de correlación = -0.504"
-         )
+(M= cor(Datos1, method="pearson")) # -0.05300749
+ 
 #Grafico de la correlación
 plot(Datos$FGtM1,Datos$FGt, 
      main="Gráfico de correlación = -0.504",
